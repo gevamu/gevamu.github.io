@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@exactpro/docs-web-toolkit": "^0.0.1"
+  }
+}
