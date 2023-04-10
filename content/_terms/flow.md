@@ -1,5 +1,6 @@
 ---
 title: Flow
+alias: [flow]
 ---
 
 A sequence of steps that tells a Corda node how to achieve a specific ledger update 

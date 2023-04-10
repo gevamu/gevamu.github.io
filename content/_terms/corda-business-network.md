@@ -1,5 +1,6 @@
 ---
 title: Corda business network
+alias: [corda business network]
 ---
 
 A logical network based on a set of common CorDapps as well as a shared business context;  a sub-group of Corda Network participants coordinated by a BNO 
