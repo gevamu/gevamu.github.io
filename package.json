@@ -1,4 +1,17 @@
 {
+  "scripts": {
+    "prepare": "nuxi prepare",
+    "lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
+    "lint:prettier": "prettier --check .",
+    "lint:license": "license-check-and-add check",
+    "lint": "npm run lint:license && npm run lint:js && npm run lint:prettier",
+    "lintfix": "license-check-and-add add add && prettier --write --list-different . && eslint --fix --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
+    "typecheck": "nuxi typecheck",
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@typescript-eslint/parser": "^5.55.0",
