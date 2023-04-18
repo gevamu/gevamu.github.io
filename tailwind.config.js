@@ -33,7 +33,7 @@ module.exports = {
           800: '#286455',
           900: '#183C33'
         },
-        secondary: {
+        accent: {
           DEFAULT: '#53B57F',
           50: '#D3ECDF',
           100: '#C5E6D4',
@@ -46,7 +46,7 @@ module.exports = {
           800: '#1D432E',
           900: '#0C1C13'
         },
-        accent: {
+        secondary: {
           DEFAULT: '#112A4D',
           50: '#A5C2EB',
           100: '#94B7E7',
