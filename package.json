@@ -1,0 +1,29 @@
+{
+  "scripts": {
+    "prepare": "nuxi prepare",
+    "lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
+    "lint:prettier": "prettier --check .",
+    "lint:license": "license-check-and-add check",
+    "lint": "npm run lint:license && npm run lint:js && npm run lint:prettier",
+    "lintfix": "license-check-and-add add add && prettier --write --list-different . && eslint --fix --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
+    "typecheck": "nuxi typecheck",
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config-typescript": "^12.0.0",
+    "@typescript-eslint/parser": "^5.55.0",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.7.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "license-check-and-add": "^4.0.5",
+    "prettier": "^2.8.4",
+    "typescript": "^5.0.2",
+    "vue-tsc": "^1.2.0"
+  },
+  "dependencies": {
+    "@exactpro/docs-web-toolkit": "^0.1.1"
+  }
+}
