@@ -42,7 +42,7 @@ classDiagram
     REJECTED
   }
 
-  Payment ..> PaymentStatus
+  Payment o-- PaymentStatus
 ```
 
 ## About vault queries
