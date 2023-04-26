@@ -15,18 +15,32 @@ classDiagram
   MyPaymentService ..> GevamuFacade
 ```
 
-Structure of the `PaymentState` is as follows:
+## Payment structure
+
+Structure of the [`Payment`](https://gevamu.github.io/corda-payments-sdk/payments-contracts/com.gevamu.corda.states/-payment/index.html) is as follows:
 
 ```mermaid
 classDiagram
-  class PaymentState {
+  class Payment {
     + payer: Party
     + gateway: Party
     + endToEndId: String
     + paymentInstructionId: AttachmentId
-    + status: Payment.PaymentStatus
+    + status: PaymentStatus
     + additionalInfo: String?
     + uniquePaymentId: UUID
     + timestamp: Instant
   }
+
+  class PaymentStatus{
+    <<enumeration>>
+    CREATED
+    SENT_TO_GATEWAY
+    ACCEPTED
+    PENDING
+    COMPLETED
+    REJECTED
+  }
+
+  Payment ..> PaymentStatus
 ```
