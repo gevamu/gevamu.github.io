@@ -83,3 +83,41 @@ class GevamuFacade {
     }
 }
 ```
+
+## Query payments
+
+Criterias for searching payments can be unique for different businesses. So next example shows generic method for querying payments.
+
+```kotlin
+import net.corda.core.node.services.vault.QueryCriteria
+import com.gevamu.corda.states.Payment
+
+class GevamuFacade {
+    fun queryPayments(criteria: QueryCriteria): List<StateAndRef<Payment>> {
+        // Query vault and return list of payment states
+        return serviceHub.vaultService.queryBy<Payment>(criteria).states
+    }
+}
+```
+
+### Query payments by date range
+
+Querying objects by date range is a common task for many businesses. So following example shows how to implement this functionality.
+
+```kotlin
+import java.time.Instant
+import net.corda.core.node.services.vault.QueryCriteria
+import com.gevamu.corda.schema.PaymentSchemaV1
+import com.gevamu.corda.states.Payment
+
+class GevamuFacade {
+    fun queryPaymentsByDateRange(from: Instant, to: Instant): List<StateAndRef<Payment>> {
+        // Create custom query criteria to search by date range
+        val criteria = QueryCriteria.VaultCustomQueryCriteria(
+            PaymentSchemaV1.PersistentPayment::timestamp.between(from, to)
+        )
+        // Query vault and return list of payment states
+        return serviceHub.vaultService.queryBy<Payment>(criteria).states
+    }
+}
+```
