@@ -52,10 +52,11 @@ classDiagram
   RegisterParticipantFlow <.. Party
 ```
 
-This class initiates the flow by RPC to register the participant. 
-The call() method executes the actual logic of the flow by starting a flow session to the correct Gevamu Gateway Corda node (node where the participant wants to register).
+This class initiates the flow to register the participant. 
+The call() method executes the actual logic of the flow by starting a flow session to the correct Gevamu Gateway Corda node after receiving an RPC call. 
 This flow can be suspended.
-The correct Gevamu Gateway Node is identified through the parameter gateway of type Party(Party is imported from the corda identity package)
-The flow returns the Participant Id and Network Id after successfully registering the participant.
+The Gevamu Gateway Corda node is where the participant wants to register their payments node.
+The correct Gevamu Gateway Node is identified using the parameter gateway of type Party(Party is imported from the corda identity package).
+The flow returns the Participant Id and Network Id after the Gevamu Gateway successfully registers the participant.
 
 
