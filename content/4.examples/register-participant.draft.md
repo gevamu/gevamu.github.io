@@ -17,23 +17,43 @@ classDiagram
 This is done by calling the `RegisterParticipantFlow` flow.
 
 ## Registration Summary
-The participant requests to join the payments network, the Gevamu Payments Gateway provides the participant with the Network ID of the BNO and assigns the Participant ID, and then registers the Payments CorDapp. 
-
-
+1. The Participant requests to join the BNO through the Payments node
+2. The Payments node requests the Gevamu Gateway Node for registration
+3. The Gevamu gateway provides the Payments Node with a ParticipantId and the NetworkID of the BNO
 
 ## Participant Registration class
 
+A Kotlin data class that holds the Participant Id and the Network Id
 
-This data class: 
+```mermaid
+classDiagram
+  class ParticipantRegistration {
+    + equals() Boolean
+    + hashcode() Int
+    + serialVersionUID Int
 
-- has parameters `participantId` and a `networkId`
-
+  }
+```
 
 
 ## Register Participant Flow Class
 
-This class is the start of the flow to register the participant and the flow starts by RPC. (see annotations `@InitiatingFlow` `@StartableByRPCclass`).
-The `party` object represents the identity of the Gevamu Gateway Corda node (node where the participant wants to register).
-The flow returns the `ParticipantRegistration` object when it is completed.
-The call() function executes the actual logic of the flow, and this flow can be suspended (`@Suspendable`).
+
+```mermaid
+classDiagram
+  class RegisterParticipantFlow {
+    + call(ParticipantRegistration) 
+  }
+  class FlowLogic
+  class Party
+  FlowLogic <|-- RegisterParticipantFlow
+  RegisterParticipantFlow <.. Party
+```
+
+This class initiates the flow by RPC to register the participant. 
+The call() method executes the actual logic of the flow by starting a flow session to the correct Gevamu Gateway Corda node (node where the participant wants to register).
+This flow can be suspended.
+The correct Gevamu Gateway Node is identified through the parameter gateway of type Party(Party is imported from the corda identity package)
+The flow returns the participant ID and network Id after successfully registering the participant.
+
 
