@@ -35,17 +35,17 @@ class GevamuFacade {
 }
 ```
 
-To make a transaction as a network participant, enter the participant ID and your target business network name obtained during onboarding.
-After that, pass the desired transaction amount, Debtor and Creditor details.
-The transaction now has a ‘Created’ status. 
-Payment Gateway returns ‘Sent to Gateway’ status once payment is received.
-The payment service provider can accept or reject the transaction.
+To make a transaction as a network participant, enter the Participant ID and your target Business Network name obtained during onboarding.
+After that, pass the desired transaction amount along with Debtor and Creditor details.
+The transaction now has the ‘Created’ status. 
+Once payment instruction is received, the Payment Gateway validates its node identity as well as the Participant ID. If the validation passes, the Payment Gateway sends the instruction to an external Payment Service Provider's gateway and returns the ‘Sent to Gateway’ status back to the Participant.
+The Payment Service Provider can accept or reject the transaction.
 
 ![Payment workflow of the Gevamu solution](/img/Payment_workflow.png)
 
-The Participant initiates the payment transaction off-chain via provided interface in MyPaymentService.
+The Participant initiates the payment transaction off-chain via the provided interface in MyPaymentService.
 The payment request is handled by a web server on the Participant’s side and sent via Corda RPC to the custom Payment CorDapp installed on-chain on the Participant’s node.
-The custom payment CorDapp passes the payment request as an instruction formatted according to the industry-accepted payment standard (For example, ISO 20022-formatted XML, to the Gevamu Payment SDK).
+The custom Payment CorDapp passes the payment request as an instruction formatted according to the industry-accepted payment standard (for example, ISO 20022-formatted XML) to the Gevamu Payment SDK.
 The SDK pre-validates the payment instruction and creates a state (or several states if multiple payments are instructed) with an attachment containing the original payment instruction.
 The payment instruction is sent to the Gevamu Payment Gateway.
 The Gevamu Payment Gateway validates the payment instruction.
