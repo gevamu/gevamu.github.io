@@ -41,7 +41,41 @@ The transaction now has the ‘Created’ status.
 Once payment instruction is received, the Payment Gateway validates its node identity as well as the Participant ID. If the validation passes, the Payment Gateway sends the instruction to an external Payment Service Provider's gateway and returns the ‘Sent to Gateway’ status back to the Participant.
 The Payment Service Provider can accept or reject the transaction.
 
-![Payment workflow of the Gevamu solution](/img/Payment_workflow.png)
+```mermaid
+
+sequenceDiagram
+  participant CA as Client Application
+  participant PCD as Payment CorDapp powered by Gevamu Payment SDK
+  participant GPG as Gevamu Payment Gateway
+  participant PSP
+
+
+  CA->>PCD: Initiate Payment
+  PCD->>PCD: Pre-validate ISO 20022 XML* <br/> Create Payment state <br/> Payment status: Created
+  PCD->>CA: Payment status: Created
+  PCD->>GPG: Request to send Payment
+  GPG->>GPG: Validate request*
+  GPG->>PSP: Payment instruction
+  
+  PSP->>GPG: Payment status: Pending
+  GPG->>PCD: Payment status: Pending
+  PCD->>CA: Payment status: Pending
+  
+  alt Payment accepted
+
+    PSP->>GPG: Payment status: Accepted 
+    GPG->>PCD: Payment status: Accepted 
+    PCD->>CA: Payment status: Accepted 
+  
+  else Payment rejected
+    
+    PSP->>GPG: Payment status: Rejected 
+    GPG->>PCD: Payment status: Rejected 
+    PCD->>CA: Payment status: Rejected 
+    
+  end
+
+```
 
 The Participant initiates the payment transaction off-chain via the provided interface in MyPaymentService.
 The payment request is handled by a web server on the Participant’s side and sent via Corda RPC to the custom Payment CorDapp installed on-chain on the Participant’s node.
