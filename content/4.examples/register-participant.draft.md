@@ -34,14 +34,14 @@ Integrate these 2 classes by importing them from `com.gevamu.corda.flows` packag
 
 The registration process begins when the `RegisterParticipantFLow` starts a flow from the participant node to the gevamu gateway node. 
 The flow returns a `ParticipantRegistration` (Kotlin Data class) with a Participant ID for user and Network ID of BNO.
-The registration flow can be suspended, startable by RPC, and iniates flow logic ( )
+The registration flow can be suspended. 
 
 
 ### Implementation in Facade 
 
 Sample application `GevamuFacade` built to demonstrate how you may utilize the SDK to build you own app
 
-#### code 
+#### Code 
 
 The function below is an example of implementation of registration within the Facade class
 
