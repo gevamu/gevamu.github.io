@@ -28,15 +28,6 @@ import net.corda.core.node.services.CordaService
     }
 
 ```
-The 2 classes provided by the Gevamu SDK for registration are. Import them from `com.gevamu.corda.flows` package.
-1. `ParticipantRegistration` class
-2. `RegisterParticipantFLow` class 
-
-The registration process begins when the `RegisterParticipantFLow` starts a flow from the participant node to the gevamu gateway node. 
-The flow returns a `ParticipantRegistration` (Kotlin Data class) with a Participant ID for user and Network ID of BNO.
-The registration flow can be suspended. 
-
-
 
 
 
