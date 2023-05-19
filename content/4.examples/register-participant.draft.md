@@ -17,43 +17,49 @@ classDiagram
 This is done by calling the `RegisterParticipantFlow` flow.
 
 ## Registration Summary
-1. The Participant requests to join the BNO through the Payments node
-2. The Payments node requests the Gevamu Gateway Node for registration
-3. The Gevamu gateway provides the Payments Node with a ParticipantId and the NetworkID of the BNO
-
-
+1. The Participant requests to join the network through the Payments node. 
+2. The Payments node should request the Gevamu Gateway Node for registration.
+    A gateway exists for each bank/PSP.
+3. The Gevamu gateway provides the Payments Node with a ParticipantId and the NetworkID of the BNO.
 
 ## Registration response structure
 
-A Kotlin data class that holds the Participant Id and the Network Id
+The 2 classes provided by the Gevamu SDK for registration are:
+1. `ParticipantRegistration` class
+2. `RegisterParticipantFLow` class
 
-```mermaid
-classDiagram
-  class ParticipantRegistration {
-    + equals() Boolean
-    + hashcode() Int
-    + serialVersionUID : Int
+Integrate these 2 classes by importing them from `com.gevamu.corda.flows` package. 
 
-  }
+### Process
+
+The registration process begins when the `RegisterParticipantFLow` starts a flow from the participant node to the gevamu gateway node. 
+The flow returns a `ParticipantRegistration` (Kotlin Data class) with a Participant ID for user and Network ID of BNO.
+The registration flow can be suspended, startable by RPC, and iniates flow logic ( )
+
+
+### Implementation in Facade 
+
+Sample application `GevamuFacade` built to demonstrate how you may utilize the SDK to build you own app
+
+#### code 
+
+The function below is an example of implementation of registration within the Facade class
+
+```kotlin
+import com.gevamu.corda.flows.ParticipantRegistration
+import com.gevamu.corda.flows.RegisterParticipantFlow
+import net.corda.core.identity.Party
+import net.corda.core.node.services.CordaService
+
+  fun registerParticipant(gateway: Party): ParticipantRegistration {
+        val flowHandle = serviceHub.startFlow(RegisterParticipantFlow(gateway))
+        return flowHandle.returnValue.get()
+    }
+
 ```
 
-### Register Participant Flow Class
 
-```mermaid
-classDiagram
-  class RegisterParticipantFlow {
-    + call(ParticipantRegistration) 
-  }
-  class FlowLogic
-  class Party
-  FlowLogic <|-- RegisterParticipantFlow
-  RegisterParticipantFlow <.. Party
-```
 
-This class initiates the flow to register the participant. 
-The call() method executes the actual logic of the flow by starting a flow session to the correct Gevamu Gateway Corda node after receiving an RPC call. 
-This flow can be suspended.
-The Gevamu Gateway Corda node is where the participant wants to register their payments node.
-The flow returns the Participant Id and Network Id after the Gevamu Gateway successfully registers the participant.
+
 
 
