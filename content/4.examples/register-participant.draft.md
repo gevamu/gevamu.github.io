@@ -14,7 +14,7 @@ classDiagram
   MyPaymentService ..> GevamuFacade
 ```
 
-This is done by calling the `RegisterParticipantFlow` flow.
+Within Gevamu Payments Solution provides `RegisterParticipantFlow` as flow for registration execution.
 
 An example of calling the `RegisterParticipantFlow` is shown below. 
 
@@ -32,23 +32,12 @@ class GevamuFacade {
     }
 }
 ```
-In the example above, the developer has imported and utilized the classes required for registration into their CordApp. 
 
 The `RegisterParticipantFlow` requests registration from the particular Gevemu Gateway node.
 The Gateway required for registration is identified by the Party class.
-Depending on how you design your CordApp, the flow to register the participant node can be started with an RPC call or using the `serviceHub` as in the example above. 
+Depending on how you design your CorDapp, the flow to register the participant node can be started with an RPC call or using the `serviceHub` as in the example above. 
 
-Class diagram showing some of the properties of `RegisterParticipantFlow` class.
-For complete details about the class go [here](https://gevamu.github.io/corda-payments-sdk/payments-workflows/com.gevamu.corda.flows/-register-participant-flow/index.html).
-
-```mermaid
-classDiagram
-  class RegisterParticipantFlow{
-    val serviceHub: ServiceHub
-    var stateMachine: FlowStateMachine<*>
-  }
-```
-After successful registeration, the Gateway node will return a Participant Id and the BNO Network Id.
+After successful registration, the Gateway node will return a Participant Id and the BNO Network Id.
 The returned information is held in the data class `ParticipantRegistration`. 
 
 Class diagram showing some of the properties of `ParticipantRegistration` class. 
@@ -57,8 +46,8 @@ For complete details about the class go [here](https://gevamu.github.io/corda-pa
 ```mermaid
 classDiagram
   class ParticipantRegistration {
-    val networkId: String
-    val participantId: String
+    networkId: String
+    participantId: String
   }
 
 ```
