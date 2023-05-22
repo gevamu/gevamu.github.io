@@ -39,7 +39,7 @@ The Gateway required for registration is identified by the Party class.
 Depending on how you design your CordApp, the flow to register the participant node can be started with an RPC call or using the `serviceHub` as in the example above. 
 
 Class diagram showing some of the properties of `RegisterParticipantFlow` class.
-For complete details about the class go [here]('https://gevamu.github.io/corda-payments-sdk/payments-workflows/com.gevamu.corda.flows/-register-participant-flow/index.html').
+For complete details about the class go [here](https://gevamu.github.io/corda-payments-sdk/payments-workflows/com.gevamu.corda.flows/-register-participant-flow/index.html).
 
 ```mermaid
 classDiagram
@@ -52,7 +52,7 @@ After successful registeration, the Gateway node will return a Participant Id an
 The returned information is held in the data class `ParticipantRegistration`. 
 
 Class diagram showing some of the properties of `ParticipantRegistration` class. 
-For complete details about the class go [here]('https://gevamu.github.io/corda-payments-sdk/payments-workflows/com.gevamu.corda.flows/-participant-registration/index.html').
+For complete details about the class go [here](https://gevamu.github.io/corda-payments-sdk/payments-workflows/com.gevamu.corda.flows/-participant-registration/index.html).
 
 ```mermaid
 classDiagram
