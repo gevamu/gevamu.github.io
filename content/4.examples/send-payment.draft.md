@@ -50,35 +50,17 @@ The Payment Service Provider can accept or reject the transaction.
 ```mermaid
 
 sequenceDiagram
-  participant CA as Client Application
-  participant PCD as Payment CorDapp powered by Gevamu Payment SDK
+  participant CA as MyPaymentService
+  participant PCD as GevamuFacade
   participant GPG as Gevamu Payment Gateway
   participant PSP
 
 
   CA->>PCD: Initiate Payment
-  PCD->>PCD: Pre-validate ISO 20022 XML* <br/> Create Payment state <br/> Payment status: Created
+  PCD->>PCD: Initiate payment <br/> within PSP
   PCD->>CA: Payment status: Created
-  PCD->>GPG: Request to send Payment
-  GPG->>GPG: Validate request*
-  GPG->>PSP: Payment instruction
-  
-  PSP->>GPG: Payment status: Pending
-  GPG->>PCD: Payment status: Pending
-  PCD->>CA: Payment status: Pending
-  
-  alt Payment accepted
-
-    PSP->>GPG: Payment status: Accepted 
-    GPG->>PCD: Payment status: Accepted 
-    PCD->>CA: Payment status: Accepted 
-  
-  else Payment rejected
-    
-    PSP->>GPG: Payment status: Rejected 
-    GPG->>PCD: Payment status: Rejected 
-    PCD->>CA: Payment status: Rejected 
-    
-  end
+  PCD->>PCD: Passive payment update...
+  CA->>PCD: Query payment
+  PCD->>PCD: Payment with relevant status
 
 ```
