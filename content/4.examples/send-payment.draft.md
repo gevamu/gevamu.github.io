@@ -40,12 +40,13 @@ class GevamuFacade(private val serviceHub: AppServiceHub): SingletonSerializeAsT
 
 ```
 
-To make a transaction as a network participant, enter the Participant ID and your target Business Network name obtained during onboarding.
+To make a transaction as a network participant, provide the Participant ID and your target Business Network name obtained during onboarding.
 After that, pass the desired transaction amount along with Debtor and Creditor details.
-The transaction now has the ‘Created’ status. 
+The transaction will have the ‘Created’ status. 
 
-Once payment instruction is received, the Payment Gateway validates its node identity as well as the Participant ID. If the validation passes, the Payment Gateway sends the instruction to an external Payment Service Provider's gateway and returns the ‘Sent to Gateway’ status back to the Participant.
-The Payment Service Provider can accept or reject the transaction.
+Once payment instruction is received, the Payment Gateway validates its node identity as well as the Participant ID. 
+If the validation passes, the Payment Gateway returns the ‘Sent to Gateway’ status back to the Participant.
+Transaction can be accepted or rejected by the Payment Service Provider.
 
 ```mermaid
 
