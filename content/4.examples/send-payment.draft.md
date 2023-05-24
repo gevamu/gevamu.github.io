@@ -62,6 +62,8 @@ sequenceDiagram
 
 ```
 
+## Transactions lifecycle
+
 Once payment instruction is received, the Payment Gateway validates its node identity as well as the Participant ID.
 If the validation passes, the Payment Gateway returns the ‘Sent to Gateway’ status back to the Participant.
 Transaction can be accepted or rejected by the Payment Service Provider.
