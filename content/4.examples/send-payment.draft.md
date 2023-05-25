@@ -14,6 +14,12 @@ classDiagram
   MyPaymentService ..> GevamuFacade
 ```
 
+## Program implementation
+
+Sending payment is quite simple operation. It includes only call of `PaymentFlow`. 
+
+But before starting the flow you should provide payment instruction. It should be created according to chosen payment standard.
+
 ```kotlin
 class MyPaymentService(private val gevamuFacade: GevamuFacade) {
     fun sendPaymentViaGevamu() {
@@ -37,10 +43,10 @@ class GevamuFacade(private val serviceHub: AppServiceHub): SingletonSerializeAsT
     val flowHandle = serviceHub.startFlow(PaymentFlow(paymentInstruction, gateway, UUID.randomUUID()))
     return flowHandle.returnValue.get()
   }
-
+}
 ```
 
-To make a transaction as a network participant, describe Payment in one of formats listed in `PaymentInstructionFormat` enum. 
+To make a transaction as a network participant, describe Payment in one of formats listed in [`PaymentInstructionFormat`](https://gevamu.github.io/corda-payments-sdk/payments-workflows/com.gevamu.corda.flows/-payment-instruction-format/index.html) enum. 
 
 
 
@@ -49,16 +55,13 @@ To make a transaction as a network participant, describe Payment in one of forma
 sequenceDiagram
   participant CA as MyPaymentService
   participant PCD as GevamuFacade
-  participant GPG as Gevamu Payment Gateway
-  participant PSP
-
 
   CA->>PCD: Initiate Payment
   PCD->>PCD: Initiate payment <br/> within PSP
   PCD->>CA: Payment status: Created
   PCD->>PCD: Passive payment update...
   CA->>PCD: Query payment
-  PCD->>PCD: Payment with relevant status
+  PCD->>CA: Payment with relevant status
 
 ```
 
