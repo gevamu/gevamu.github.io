@@ -36,11 +36,11 @@ class GevamuFacade {
 ```
 
 The `RegisterParticipantFlow` requests registration from the particular Gevamu Gateway node.
-The Gateway required for registration is identified by the `Party` class.
+The Gateway required for registration is identified via instance of `Party` .
 Depending on how you design your CorDapp, the flow to register the participant node can be started with an RPC call or using the [`serviceHub`](https://docs.r3.com/en/api-ref/corda/4.8/open-source/kotlin/corda/net.corda.core.node/-service-hub/index.html) as in the example above. 
 
 After successful registration, the Gateway node returns the participant registration record with a Participant Id and the BNO Network Id.
-The participant registration record in the form of a data class `ParticipantRegistration` is shown below.
+The structure of the data class `ParticipantRegistration` is shown below.
 
 ```mermaid
 classDiagram
@@ -50,10 +50,7 @@ classDiagram
   }
 
 ```
-## Check if the participant node was registered
-
-If the node has been registered with a Gateway node it always returns the existing credentials. 
-Methods in the `ParticipantRegistration` data class verifies if the returned participant id is unique allowing you to confirm that the participant node has already been registered with a particular Gateway node. 
+ 
 
 
 
