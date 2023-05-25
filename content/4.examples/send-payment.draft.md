@@ -50,6 +50,14 @@ To make a transaction as a network participant, describe Payment in one of forma
 
 
 
+## Transactions lifecycle
+
+Once payment instruction is received, the Gevamu Payment Solution makes an authentication (using node identity and the Participant ID).
+If the validation passes, the Payment Gateway returns the ‘Sent to Gateway’ status back to the Participant.
+Transaction can be accepted or rejected by the Payment Service Provider.
+
+You can find sequence diagrams of payment processing and payment state transition below:
+
 ```mermaid
 
 sequenceDiagram
@@ -64,12 +72,6 @@ sequenceDiagram
   PCD->>CA: Payment with relevant status
 
 ```
-
-## Transactions lifecycle
-
-Once payment instruction is received, the Payment Gateway validates its node identity as well as the Participant ID.
-If the validation passes, the Payment Gateway returns the ‘Sent to Gateway’ status back to the Participant.
-Transaction can be accepted or rejected by the Payment Service Provider.
 
 ```mermaid
 
