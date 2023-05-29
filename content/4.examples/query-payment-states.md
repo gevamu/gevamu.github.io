@@ -19,6 +19,10 @@ classDiagram
 
 Structure of the [`Payment`](https://gevamu.github.io/corda-payments-sdk/payments-contracts/com.gevamu.corda.states/-payment/index.html) is as follows:
 
+::notice{info}
+  Pay attention, that full payment instruction is stored as Corda [`Attachment`](https://docs.r3.com/en/api-ref/corda/4.8/open-source/javadoc/net/corda/core/contracts/Attachment.html). So you need to download it and deserialize it to get all payment details.
+::
+
 ```mermaid
 classDiagram
   class Payment {
@@ -42,7 +46,14 @@ classDiagram
     REJECTED
   }
 
+  class Attachment {
+    <<interface>>
+    + id: SecureHash
+    + open(): InputStream
+  }
+
   Payment o-- PaymentStatus
+  Payment .. Attachment: paymentInstructionId --> id
 ```
 
 ## About vault queries
@@ -50,6 +61,10 @@ classDiagram
 Every Corda node have a vault that stores all states that are created by the node. Our interest is in the `Payment` states.
 
 Corda provides a powerful query language to search for states in the vault. You can find more information about it in the [Writing vault queries](https://docs.r3.com/en/platform/corda/4.7/enterprise/cordapps/api-vault-query.html) section of the documentation.
+
+::notice{warning}
+  Payment attachments are stored as files. So you can't use vault queries to search by payment details stored in attachments.
+::
 
 In order to create queries for Gevamu payments you need following imports:
 
@@ -63,7 +78,7 @@ import com.gevamu.corda.states.Payment
 
 ## Get single payment
 
-In order to find unique payment it is necessary to search by `uniquePaymentId` field. That's whu `getPayment` method accepts `uniquePaymentId` as a parameter.
+In order to find unique payment it is necessary to search by `uniquePaymentId` field. That's why `getPayment` method accepts `uniquePaymentId` as a parameter.
 
 ```kotlin
 import java.util.UUID
