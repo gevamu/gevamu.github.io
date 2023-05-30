@@ -1,6 +1,6 @@
 # Query payment states
 
-Corda stores the state of a payment in the vault of the node that initiated the payment. So you can access the state of a payment by querying the vault.
+Corda stores the state of a payment in the vault of the node that initiated the payment, so you can access the state of a payment by querying the vault.
 
 ```mermaid
 classDiagram
@@ -17,7 +17,7 @@ classDiagram
 
 ## Payment structure
 
-Structure of the [`Payment`](https://gevamu.github.io/corda-payments-sdk/payments-contracts/com.gevamu.corda.states/-payment/index.html) is as follows:
+Structure of the [`Payment`](https://gevamu.github.io/corda-payments-sdk/payments-contracts/com.gevamu.corda.states/-payment/index.html) state is as follows:
 
 ::notice{info}
   Pay attention, that full payment instruction is stored as Corda [`Attachment`](https://docs.r3.com/en/api-ref/corda/4.8/open-source/javadoc/net/corda/core/contracts/Attachment.html). So you need to download it and deserialize it to get all payment details.
@@ -58,15 +58,15 @@ classDiagram
 
 ## About vault queries
 
-Every Corda node have a vault that stores all states that are created by the node. Our interest is in the `Payment` states.
+Every Corda node has a vault that stores all the states created by the node (in our case, the `Payment` states).
 
-Corda provides a powerful query language to search for states in the vault. You can find more information about it in the [Writing vault queries](https://docs.r3.com/en/platform/corda/4.7/enterprise/cordapps/api-vault-query.html) section of the documentation.
+Corda provides a powerful query language to search for states in the vault – learn more about [Writing vault queries](https://docs.r3.com/en/platform/corda/4.7/enterprise/cordapps/api-vault-query.html) in Corda documentation.
 
 ::notice{warning}
   Payment attachments are stored as files. So you can't use vault queries to search by payment details stored in attachments.
 ::
 
-In order to create queries for Gevamu payments you need following imports:
+To create queries for the Gevamu payments, use the following imports:
 
 ```kotlin
 // Corda imports
@@ -76,9 +76,9 @@ import com.gevamu.corda.schema.PaymentSchemaV1
 import com.gevamu.corda.states.Payment
 ```
 
-## Get single payment
+## Get a single payment
 
-In order to find unique payment it is necessary to search by `uniquePaymentId` field. That's why `getPayment` method accepts `uniquePaymentId` as a parameter.
+To find a unique payment, search by the `uniquePaymentId` field, accepted by the `getPayment` method as a parameter.
 
 ```kotlin
 import java.util.UUID
@@ -101,7 +101,7 @@ class GevamuFacade {
 
 ## Query payments
 
-Criterias for searching payments can be unique for different businesses. So next example shows generic method for querying payments.
+Search criteria for payments can be unique to particular businesses. The following example shows a generic method for querying payments.
 
 ```kotlin
 import net.corda.core.node.services.vault.QueryCriteria
@@ -117,7 +117,7 @@ class GevamuFacade {
 
 ### Query payments by date range
 
-Querying objects by date range is a common task for many businesses. So following example shows how to implement this functionality.
+Querying objects by a date range is a common task for many businesses. The following example shows how to implement this functionality.
 
 ```kotlin
 import java.time.Instant
