@@ -19,9 +19,6 @@ classDiagram
 
 Structure of the [`Payment`](https://gevamu.github.io/corda-payments-sdk/payments-contracts/com.gevamu.corda.states/-payment/index.html) state is as follows:
 
-::notice{info}
-  Pay attention, that full payment instruction is stored as Corda [`Attachment`](https://docs.r3.com/en/api-ref/corda/4.8/open-source/javadoc/net/corda/core/contracts/Attachment.html). So you need to download it and deserialize it to get all payment details.
-::
 
 ```mermaid
 classDiagram
@@ -55,6 +52,9 @@ classDiagram
   Payment o-- PaymentStatus
   Payment .. Attachment: paymentInstructionId --> id
 ```
+::notice{info}
+  Note that the full payment instruction is stored as a Corda [`Attachment`](https://docs.r3.com/en/api-ref/corda/4.8/open-source/javadoc/net/corda/core/contracts/Attachment.html). 
+::
 
 ## About vault queries
 
@@ -63,7 +63,9 @@ Every Corda node has a vault that stores all the states created by the node (in 
 Corda provides a powerful query language to search for states in the vault – learn more about [Writing vault queries](https://docs.r3.com/en/platform/corda/4.7/enterprise/cordapps/api-vault-query.html) in Corda documentation.
 
 ::notice{warning}
-  Payment attachments are stored as files. So you can't use vault queries to search by payment details stored in attachments.
+  Gevamu SDK doesn't provide any ready-to-use solution for querying by payments details stored in the attachment. However, you can create additional tables with the information needed for your business needs and use them in vault queries. 
+  To get all payment details from the attachment, download and deserialize it.
+ 
 ::
 
 To create queries for the Gevamu payments, use the following imports:
