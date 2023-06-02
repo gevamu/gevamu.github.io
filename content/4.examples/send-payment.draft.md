@@ -48,8 +48,8 @@ class GevamuFacade(private val serviceHub: AppServiceHub): SingletonSerializeAsT
 
 ## Transactions lifecycle
 
-Once payment instruction is received, the Gevamu Payment Solution makes an authentication (using node identity and the Participant ID).
-If the validation passes, the Payment Gateway returns the ‘Sent to Gateway’ status back to the Participant.
+Once payment instruction is received, the Gevamu Payment Solution validates and authorizes (by checking node identity and the Participant ID) the payment.
+If the validation passes, the Payment Gateway sets the payment status to ‘Sent to Gateway’. Status change is communicated back to the Participant's node.
 Transaction can be accepted or rejected by the Payment Service Provider.
 
 To make a transaction as a network participant, describe Payment in one of formats listed in [`PaymentInstructionFormat`](https://gevamu.github.io/corda-payments-sdk/payments-workflows/com.gevamu.corda.flows/-payment-instruction-format/index.html) enum.
