@@ -66,6 +66,7 @@ sequenceDiagram
   PCD->>PCD: Initiate payment <br/> within PSP
   PCD->>CA: Payment status: Created
   PCD->>PCD: Passive payment update...
+  Note over CA,PCD: After state change
   CA->>PCD: Query payment
   PCD->>CA: Payment with relevant status
 
@@ -76,8 +77,9 @@ sequenceDiagram
 stateDiagram-v2
     [*] --> Created
     Created --> Sent
-    Sent --> Accepted
-    Sent --> Rejected
+    Sent --> Pending
+    Pending --> Accepted
+    Pending --> Rejected
     Accepted --> [*]
     Rejected --> [*]
 
