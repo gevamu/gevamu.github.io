@@ -19,32 +19,30 @@ export default defineAppConfig({
     title: 'Gevamu',
     social: {
       githhub: {
-        url: 'https://github.com/gevamu', // Custom URL
-        customIcon: undefined, // Icon name from https://icones.js.org/
-        disabled: false // Hide social media link
+        url: 'https://github.com/gevamu',
+        // TODO: remove this workaround when problem with types in docs-toolkit is resolved
+        customIcon: undefined,
+        disabled: false
       },
-      // Other social media links have the same structure
       facebook: {
-        url: undefined, // Custom URL
-        customIcon: undefined, // Icon name from https://icones.js.org/
+        url: undefined,
+        customIcon: undefined,
         disabled: true
       },
       twitter: {
-        url: undefined, // Custom URL
-        customIcon: undefined, // Icon name from https://icones.js.org/
+        url: undefined,
+        customIcon: undefined,
         disabled: true
       },
       linkedin: {
-        url: undefined, // Custom URL
-        customIcon: undefined, // Icon name from https://icones.js.org/
+        url: undefined,
+        customIcon: undefined,
         disabled: true
       },
       youtube: {
-        url: undefined, // Custom URL
-        customIcon: undefined, // Icon name from https://icones.js.org/
+        url: undefined,
+        customIcon: undefined,
         disabled: true
-
-        // TODO: remove this workaround when problem with types in docs-toolkit is resolved
       }
     }
   }
