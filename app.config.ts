@@ -20,21 +20,31 @@ export default defineAppConfig({
     social: {
       githhub: {
         url: 'https://github.com/gevamu', // Custom URL
-        // customIcon: 'fa6-brands:square-github', // Icon name from https://icones.js.org/
+        customIcon: undefined, // Icon name from https://icones.js.org/
         disabled: false // Hide social media link
       },
       // Other social media links have the same structure
       facebook: {
+        url: undefined, // Custom URL
+        customIcon: undefined, // Icon name from https://icones.js.org/
         disabled: true
       },
       twitter: {
+        url: undefined, // Custom URL
+        customIcon: undefined, // Icon name from https://icones.js.org/
         disabled: true
       },
       linkedin: {
+        url: undefined, // Custom URL
+        customIcon: undefined, // Icon name from https://icones.js.org/
         disabled: true
       },
       youtube: {
+        url: undefined, // Custom URL
+        customIcon: undefined, // Icon name from https://icones.js.org/
         disabled: true
+
+        // TODO: remove this workaround when problem with types in docs-toolkit is resolved
       }
     }
   }
