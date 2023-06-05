@@ -16,6 +16,34 @@
 
 export default defineAppConfig({
   exactproDocs: {
-    title: 'Gevamu'
+    title: 'Gevamu',
+    social: {
+      githhub: {
+        url: 'https://github.com/gevamu',
+        // TODO: remove this workaround when problem with types in docs-toolkit is resolved
+        customIcon: undefined,
+        disabled: false
+      },
+      facebook: {
+        url: undefined,
+        customIcon: undefined,
+        disabled: true
+      },
+      twitter: {
+        url: undefined,
+        customIcon: undefined,
+        disabled: true
+      },
+      linkedin: {
+        url: undefined,
+        customIcon: undefined,
+        disabled: true
+      },
+      youtube: {
+        url: undefined,
+        customIcon: undefined,
+        disabled: true
+      }
+    }
   }
 })
