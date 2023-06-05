@@ -16,6 +16,26 @@
 
 export default defineAppConfig({
   exactproDocs: {
-    title: 'Gevamu'
+    title: 'Gevamu',
+    social: {
+      githhub: {
+        url: 'https://github.com/gevamu', // Custom URL
+        // customIcon: 'fa6-brands:square-github', // Icon name from https://icones.js.org/
+        disabled: false // Hide social media link
+      },
+      // Other social media links have the same structure
+      facebook: {
+        disabled: true
+      },
+      twitter: {
+        disabled: true
+      },
+      linkedin: {
+        disabled: true
+      },
+      youtube: {
+        disabled: true
+      }
+    }
   }
 })
