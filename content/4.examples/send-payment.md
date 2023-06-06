@@ -75,6 +75,7 @@ sequenceDiagram
 ```mermaid
 
 stateDiagram-v2
+    Sent: Sent to gateway
     [*] --> Created
     Created --> Sent
     Sent --> Pending
