@@ -44,6 +44,9 @@ export default defineAppConfig({
         customIcon: undefined,
         disabled: true
       }
+    },
+    gtag: {
+      measurementId: 'G-X8PF05EJ19'
     }
   }
 })
