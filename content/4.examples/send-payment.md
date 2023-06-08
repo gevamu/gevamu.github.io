@@ -79,6 +79,8 @@ stateDiagram-v2
     [*] --> Created
     Created --> Sent
     Sent --> Pending
+    Sent  --> Accepted
+    Sent  --> Rejected
     Pending --> Accepted
     Pending --> Rejected
     Accepted --> [*]
