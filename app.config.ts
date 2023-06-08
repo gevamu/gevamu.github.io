@@ -47,6 +47,15 @@ export default defineAppConfig({
     },
     gtag: {
       measurementId: 'G-X8PF05EJ19'
+    },
+    seo: {
+      verificationMetaTags: [
+        // <meta name="google-site-verification" content="PYzR06VK4UIZvGdBkMh_TkqOu83QxapFJknyAR58yJA" />
+        {
+          name: 'google-site-verification',
+          content: 'PYzR06VK4UIZvGdBkMh_TkqOu83QxapFJknyAR58yJA'
+        }
+      ]
     }
   }
 })
