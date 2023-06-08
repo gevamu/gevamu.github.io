@@ -4,14 +4,9 @@ This example shows how to send a payment from one account to another via Gevamu 
 
 ```mermaid
 classDiagram
-  class MyPaymentService {
-    + sendPaymentViaGevamu()
-  }
   class GevamuFacade {
     + sendPayment()
   }
-
-  MyPaymentService ..> GevamuFacade
 ```
 
 ## Program implementation
