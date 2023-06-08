@@ -49,6 +49,12 @@ export default defineAppConfig({
       measurementId: 'G-X8PF05EJ19'
     },
     seo: {
+      // FIXME: Added to avoid type errors
+      sitemap: {
+        baseUrl: 'https://gevamu.github.io'
+      },
+      // FIXME: Added to avoid type errors
+      robots: [],
       verificationMetaTags: [
         // <meta name="google-site-verification" content="PYzR06VK4UIZvGdBkMh_TkqOu83QxapFJknyAR58yJA" />
         {
