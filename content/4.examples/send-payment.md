@@ -35,7 +35,7 @@ class GevamuFacade(private val serviceHub: AppServiceHub): SingletonSerializeAsT
     paymentInstruction: PaymentInstruction,
     gateway: Party
   ): List<StateAndRef<Payment>> {
-    val flowHandle = serviceHub.startFlow(PaymentFlow(paymentInstruction, gateway, UUID.randomUUID()))
+    val flowHandle = serviceHub.startFlow(PaymentFlow(paymentInstruction, gateway))
     return flowHandle.returnValue.get()
   }
 }
@@ -49,8 +49,10 @@ Status change is communicated back to the Participant's node.
 Some payment initiation requests has multiple payment instructions.
 In this case multiple payment states are created and independently updated.
 Transaction can be accepted or rejected by the Payment Service Provider.
+If payment cannot be immediately completed, "Pending" status is returned. 
+The payment state will be updated with the final status when the Gevamu gateway receives new status from the PSP.
 
-To make a transaction as a network participant, describe Payment in one of formats listed in [`PaymentInstructionFormat`](https://gevamu.github.io/corda-payments-sdk/payments-workflows/com.gevamu.corda.flows/-payment-instruction-format/index.html) enum.
+Payment should be described in one of formats listed in [`PaymentInstructionFormat`](https://gevamu.github.io/corda-payments-sdk/payments-workflows/com.gevamu.corda.flows/-payment-instruction-format/index.html) enum.
 
 You can find sequence diagrams of payment processing and payment state transition below:
 
