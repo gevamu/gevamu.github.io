@@ -16,7 +16,7 @@ Sending payment is quite simple operation. It includes only call of `PaymentFlow
 But before starting the flow you should provide payment instruction. It should be created according to chosen payment standard.
 
 ```kotlin
-class MyPaymentService(private val gevamuFacade: GevamuFacade) {
+class ClientApplication(private val gevamuFacade: GevamuFacade) {
     fun sendPaymentViaGevamu() {
         // Create payment instruction with payment details
         val paymentInstruction = PaymentInstruction(/* payment details */)
@@ -59,7 +59,7 @@ You can find sequence diagrams of payment processing and payment state transitio
 ```mermaid
 
 sequenceDiagram
-  participant CA as MyPaymentService
+  participant CA as ClientApplication
   participant PCD as GevamuFacade
 
   CA->>PCD: Initiate Payment
@@ -71,6 +71,12 @@ sequenceDiagram
   PCD->>CA: Payment with relevant status
 
 ```
+
+::notice{info}
+
+Check more info about payment query [here](query-payment-states)
+
+::
 
 ```mermaid
 
