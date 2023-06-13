@@ -11,7 +11,7 @@ classDiagram
 
 ## Program implementation
 
-Sending payment is quite simple operation. It includes only call of `PaymentFlow`. 
+Sending a payment is a one-step operation, consisting of a single `PaymentFlow` call. 
 
 But before starting the flow you should provide payment instruction. It should be created according to chosen payment standard.
 
@@ -30,7 +30,6 @@ class ClientApplication(private val gevamuFacade: GevamuFacade) {
 }
 
 class GevamuFacade(private val serviceHub: AppServiceHub): SingletonSerializeAsToken() {
-
   fun sendPayment(
     paymentInstruction: PaymentInstruction,
     gateway: Party
@@ -46,8 +45,7 @@ class GevamuFacade(private val serviceHub: AppServiceHub): SingletonSerializeAsT
 Once payment instruction is received, the Gevamu Payment Solution validates and authorizes (by checking node identity and the Participant ID) the payment.
 If the validation passes, the Payment Gateway sets the payment status to ‘Sent to Gateway’. 
 Status change is communicated back to the Participant's node.
-Some payment initiation requests has multiple payment instructions.
-In this case multiple payment states are created and independently updated.
+If a payment initiation request contains multiple payment instructions, multiple payment states will be created and independently updated.
 Transaction can be accepted or rejected by the Payment Service Provider.
 If payment cannot be immediately completed, "Pending" status is returned. 
 The payment state will be updated with the final status when the Gevamu gateway receives new status from the PSP.
