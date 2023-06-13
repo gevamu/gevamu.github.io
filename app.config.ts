@@ -17,6 +17,11 @@
 export default defineAppConfig({
   exactproDocs: {
     title: 'Gevamu',
+    github: {
+      repoLink: 'https://github.com/gevamu/gevamu.github.io',
+      branch: 'main',
+      docsDir:'/',
+    },
     social: {
       githhub: {
         url: 'https://github.com/gevamu',
