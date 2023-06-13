@@ -20,7 +20,7 @@ export default defineAppConfig({
     github: {
       repoLink: 'https://github.com/gevamu/gevamu.github.io',
       branch: 'main',
-      docsDir:'/',
+      docsDir: '/'
     },
     social: {
       githhub: {
