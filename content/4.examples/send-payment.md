@@ -13,7 +13,7 @@ classDiagram
 
 Sending a payment is a one-step operation, consisting of a single `PaymentFlow` call. 
 
-But before starting the flow you should provide payment instruction. It should be created according to chosen payment standard.
+Before starting the flow, you should provide a payment instruction created according to a chosen payment standard.
 
 ```kotlin
 class ClientApplication(private val gevamuFacade: GevamuFacade) {
@@ -42,7 +42,7 @@ class GevamuFacade(private val serviceHub: AppServiceHub): SingletonSerializeAsT
 
 ## Transactions lifecycle
 
-Once payment instruction is received, the Gevamu Payment Solution validates and authorizes (by checking node identity and the Participant ID) the payment.
+Once payment instruction is received, the Gevamu Payment Solution validates the payment by checking node identity and the Participant ID, and authorizes it.
 If the validation passes, the Payment Gateway sets the payment status to ‘Sent to Gateway’. 
 Status change is communicated back to the Participant's node.
 If a payment initiation request contains multiple payment instructions, multiple payment states will be created and independently updated.
