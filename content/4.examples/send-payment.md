@@ -74,7 +74,7 @@ sequenceDiagram
 
 ::notice{info}
 
-Check more info about payment query [here](query-payment-states)
+Find more information about payment queries [here](query-payment-states).
 
 ::
 
