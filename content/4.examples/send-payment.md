@@ -1,6 +1,6 @@
-# Send Payment
+# Sending Payments
 
-This example shows how to send a payment from one account to another via Gevamu Payments Solution.
+This example shows how to send a payment from one account to another via the Gevamu Payments Solution.
 
 ```mermaid
 classDiagram
@@ -9,11 +9,11 @@ classDiagram
   }
 ```
 
-## Program implementation
+## Implementation
 
 Sending a payment is a one-step operation, consisting of a single `PaymentFlow` call. 
 
-Before starting the flow, you should provide a payment instruction created according to a chosen payment standard.
+Before starting the flow, provide a payment instruction created according to a chosen payment standard:
 
 ```kotlin
 class ClientApplication(private val gevamuFacade: GevamuFacade) {
@@ -40,17 +40,19 @@ class GevamuFacade(private val serviceHub: AppServiceHub): SingletonSerializeAsT
 }
 ```
 
-## Transactions lifecycle
+## Transaction lifecycle
 
-Once payment instruction is received, the Gevamu Payment Solution validates the payment by checking node identity and the Participant ID, and authorizes it.
-If the validation passes, the Payment Gateway sets the payment status to ‘Sent to Gateway’. 
-Status change is communicated back to the Participant's node.
+When creating a payment transaction, use one of the formats listed in [`PaymentInstructionFormat`](https://gevamu.github.io/corda-payments-sdk/payments-workflows/com.gevamu.corda.flows/-payment-instruction-format/index.html) enum.
+
+Once a payment instruction is received, the Gevamu Payment Solution validates the payment by checking the Participant node's identity and the Participant ID, and authorizes it.
+
+If the validation passes, the Payment Gateway sets the payment status to ‘Sent to Gateway’ and communicates the status change back to the Participant's node.
+
 If a payment initiation request contains multiple payment instructions, multiple payment states will be created and independently updated.
-Transaction can be accepted or rejected by the Payment Service Provider.
-If payment cannot be immediately completed, "Pending" status is returned. 
-The payment state will be updated with the final status when the Gevamu gateway receives new status from the PSP.
 
-Payment should be described in one of formats listed in [`PaymentInstructionFormat`](https://gevamu.github.io/corda-payments-sdk/payments-workflows/com.gevamu.corda.flows/-payment-instruction-format/index.html) enum.
+On the side of the Payment Services Provider, the transaction can be accepted or rejected.
+If payment cannot be immediately completed, the "Pending" status is returned. 
+Once the Gevamu Payment Gateway receives a new status from the PSP, the payment state will be updated with the final status.
 
 You can find sequence diagrams of payment processing and payment state transition below:
 
@@ -79,7 +81,7 @@ Check more info about payment query [here](query-payment-states)
 ```mermaid
 
 stateDiagram-v2
-    Sent: Sent to gateway
+    Sent: Sent to Gateway
     [*] --> Created
     Created --> Sent
     Sent --> Pending
