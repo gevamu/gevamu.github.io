@@ -24,29 +24,18 @@ export default defineAppConfig({
     },
     social: {
       githhub: {
-        url: 'https://github.com/gevamu',
-        // TODO: remove this workaround when problem with types in docs-toolkit is resolved
-        customIcon: undefined,
-        disabled: false
+        url: 'https://github.com/gevamu'
       },
       facebook: {
-        url: undefined,
-        customIcon: undefined,
         disabled: true
       },
       twitter: {
-        url: undefined,
-        customIcon: undefined,
         disabled: true
       },
       linkedin: {
-        url: undefined,
-        customIcon: undefined,
         disabled: true
       },
       youtube: {
-        url: undefined,
-        customIcon: undefined,
         disabled: true
       }
     },
@@ -54,12 +43,9 @@ export default defineAppConfig({
       measurementId: 'G-X8PF05EJ19'
     },
     seo: {
-      // FIXME: Added to avoid type errors
       sitemap: {
         baseUrl: 'https://gevamu.github.io'
       },
-      // FIXME: Added to avoid type errors
-      robots: [],
       verificationMetaTags: [
         // <meta name="google-site-verification" content="PYzR06VK4UIZvGdBkMh_TkqOu83QxapFJknyAR58yJA" />
         {
