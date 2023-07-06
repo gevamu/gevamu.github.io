@@ -1,0 +1,1 @@
+export default {data:{"page-data/content/application":null},prerenderedAt:void 0}
