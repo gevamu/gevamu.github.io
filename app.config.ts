@@ -43,6 +43,8 @@ export default defineAppConfig({
       measurementId: 'G-X8PF05EJ19'
     },
     seo: {
+      description: 'Documentation portal for Gevamu (ගෙවමු) payment solution',
+      keywords: ['Gevamu', 'docs', 'documentation', 'Corda', 'Exactpro'],
       sitemap: {
         baseUrl: 'https://gevamu.github.io'
       },
