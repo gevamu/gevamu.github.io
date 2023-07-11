@@ -50,6 +50,10 @@ If the validation passes, the Payment Gateway sets the payment status to ‘Sent
 
 If a payment initiation request contains multiple payment instructions, multiple payment states will be created and independently updated.
 
+::notice{info}
+Every single payment within payment initiation request gets it's own unique ID (UUID). This ID can be used to find the payment, if necessary.
+::
+
 On the side of the Payment Services Provider, the transaction can be accepted or rejected.
 If payment cannot be immediately completed, the "Pending" status is returned. 
 Once the Gevamu Payment Gateway receives a new status from the PSP, the payment state will be updated with the final status.
