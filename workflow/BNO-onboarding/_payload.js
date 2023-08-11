@@ -1,1 +1,1 @@
-export default {data:{"page-data/workflow/BNO-onboarding":null},prerenderedAt:void 0}
+export default (function(a){return {data:{"page-data/workflow/BNO-onboarding/":a,$sPIreL9vB0:a},prerenderedAt:void 0}}(null))
